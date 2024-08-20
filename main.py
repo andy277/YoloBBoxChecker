@@ -37,8 +37,8 @@ for file in os.listdir(mypath):
 
 """ Process """
 for txt_name in txt_list:
-    img_filename = txt_name.rstrip(".txt") + ".jpg"
-    img_path = mypath + txt_name.rstrip(".txt") + ".jpg"
+    img_filename = txt_name.rstrip("txt") + "jpg"
+    img_path = mypath + txt_name.rstrip("txt") + "jpg"
     img = cv2.imread(img_path)
 
     """ Open input text files """
@@ -59,12 +59,12 @@ for txt_name in txt_list:
         y = float(value[2])
         w = float(value[3])
         h = float(value[4])
-	
+
         img_h, img_w = img.shape[:2]
         bb = convert((img_w, img_h), x,y,w,h)
         cv2.rectangle(img, (int(round(bb[0])),int(round(bb[2]))),(int(round(bb[1])),int(round(bb[3]))),(0,0,255),1)
         #uncomment to show label index
-        #cv2.putText(img, cls, (int(round(bb[0])),int(round(bb[2]))-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255),2,cv2.LINE_AA)
+        cv2.putText(img, cls, (int(round(bb[0])),int(round(bb[2]))-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255),2,cv2.LINE_AA)
         cv2.imwrite(img_outpath, img)
 
   
